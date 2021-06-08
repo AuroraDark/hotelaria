@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel</title>
+</head>
+<body>
+    <header>
+        <nav><a href="">Novo Usuário</a></nav>
+    </header>
+    <form name="formLogin" method="post" action="login">
+        <table>
+            <h1>Login</h1>
+            <tr>
+                <td class="form__group field"><input type="text" name="usuario" placeholder="Usuário" class="form__field"></td>
+            </tr> 
+            <tr>
+                <td class="form__group field"><input type="password" name="senha" placeholder="Senha" class="form__field"></td>
+            </tr>
+            <tr>
+                <td><a href="#">Esqueceu sua senha?</a></td>
+            </tr>
+        </table>
+        <input type="button" value="Entrar" class="bttblue" onclick="validar()">
+    </form>
+    <script src="scripts/validador.js"></script>
+</body>
+</html>
