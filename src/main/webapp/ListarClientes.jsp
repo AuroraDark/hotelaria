@@ -20,13 +20,13 @@
 </head>
 
 <body>
-
 <% if(usuario.getUsuario().equals("admin")){%>
 <%@include file="/headerAdmin.jsp" %>
 <%}else{%>
 <%@include file="/header.jsp" %>
 <%}%>
-	<h1>Selecione um cliente para Alterar:</h1>
+
+	<h1>Selecione o cliente:</h1>
 	<table id="tabela">
 		<thead>
 			<tr>
@@ -61,12 +61,11 @@
 					<td><%=listacartoes.get(i).getcNome() %></td>
 					<td><%=listacartoes.get(i).getcNum() %></td>
 					<td><%=listacartoes.get(i).getcVal() %></td>
-					<td><a href="selectcliente?codCli=<%=listaclientes.get(i).getCodCli() %>&code=1" class="bttblue">Editar</a><a href="javascript: confirmarCliente(<%=listaclientes.get(i).getCodCli() %>)" class="bttred">Deletar</a></td>
+					<td><a href="selectcliente?codCli=<%=listaclientes.get(i).getCodCli() %>&code=2" class="bttblue">Selecionar</a></td>
 				</tr>
 				<%} %>
 		</tbody>
 	</table>
-	<script src="scripts/confirmador.js"></script>
-	<a href="Menu.jsp" class="bttred">Voltar</a>
+	<a href="ReservaCheck.jsp" class="bttred">Voltar</a>
 </body>
 </html>

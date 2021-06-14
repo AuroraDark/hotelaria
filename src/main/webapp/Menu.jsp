@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="/validarUsuario.jsp" %>
+<%  if((usuario.getUsuario().equals("admin"))) {
+	response.sendRedirect("MenuAdmin.jsp");
+     } %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,24 +16,10 @@
 </head>
 
 <body>
-	<header>
-		<nav class="dropdown">
-			<button class="dropbtn"style="font-size: 24px; color: white;"><i class="fas fa-bars"></i></button>
-			<div class="dropdown-content">
-				<a href="NovoCliente.html" >Cadastrar Cliente</a>
-				<a href="readcliente">Alterar Cliente</a>
-				<a href="#">Efetuar Reserva</a>
-				<a href="#">Consultar Reserva</a>
-				<a href="#">Fazer Check-in</a>
-				<a href="#">Fazer Check-out</a>
-			</div>
-		</nav>
-		<div class="info-user"><p>Olá, <span>Usuário</span></p><a href="#" class="bttred">Sair</a></div>
-	</header>
-
+    <%@include file="/header.jsp" %>
 	<div class="menu">	
 	<section class="cards">
-		<a href="#" class="card"><img src="https://image.flaticon.com/icons/png/512/3112/3112979.png" alt="sino"><p>Efetuar Reserva</p></a>
+		<a href="ReservaCheck.jsp" class="card"><img src="https://image.flaticon.com/icons/png/512/3112/3112979.png" alt="sino"><p>Efetuar Reserva</p></a>
 		<a href="#" class="card"><img src="https://image.flaticon.com/icons/png/512/639/639375.png" alt="lupa"><p>Consultar Reserva</p></a>
 		<a href="#" class="card"><img src="https://image.flaticon.com/icons/png/512/1828/1828466.png" alt="entrar"><p>Fazer Check-in</p></a>
 		<a href="#" class="card"><img src="https://image.flaticon.com/icons/png/512/1828/1828490.png" alt="sair"><p>Fazer Check-out</p></a>

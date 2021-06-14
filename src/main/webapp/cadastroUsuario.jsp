@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/validarUsuarioAdmin.jsp" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,25 +14,9 @@
 </head>
 
 <body>
-	<header>
-		<nav class="dropdown">
-			<button class="dropbtn" style="font-size: 24px; color: white;">
-				<i class="fas fa-bars"></i>
-			</button>
-			<div class="dropdown-content">
-				<a href="NovoCliente.html">Cadastrar Cliente</a> <a
-					href="readcliente">Alterar Cliente</a> <a href="#">Efetuar
-					Reserva</a> <a href="#">Consultar Reserva</a> <a href="#">Fazer
-					Check-in</a> <a href="#">Fazer Check-out</a>
-			</div>
-		</nav>
-		<div class="info-user">
-			<p>
-				Olá, <span>Usuário</span>
-			</p>
-			<a href="#" class="bttred">Sair</a>
-		</div>
-	</header>
+
+<%@include file="/headerAdmin.jsp" %>
+
 	<form name="formUsuario" method="post" action="CadastroUsuario">
 		<h1>Crie sua conta (Funcionário)</h1>
 		<table>
@@ -85,6 +72,14 @@
 					maxlength="30" placeholder="Usuário" class="form__field"> <label
 					for="usuario" class="form__label">Usuário</label></td>
 			</tr>
+			<%
+				String erro = request.getParameter("erro");
+				if (erro != null) {
+					if (erro.equals("201")) {
+						out.write("<p>Nome de usuário já existe, escolha outro usuário</p>");
+					}
+				}
+			%>
 			<tr>
 				<td class="form__group field"><input type="password"
 					name="senha" maxlength="50" placeholder="Senha" class="form__field">
@@ -93,6 +88,7 @@
 		</table>
 		<input type="button" value="Cadastrar" class="bttblue"
 			onclick="validarUsuario()">
+		<a href="Menu.jsp" class="bttred">Voltar</a>
 	</form>
 	<script src="scripts/validador.js"></script>
 </body>

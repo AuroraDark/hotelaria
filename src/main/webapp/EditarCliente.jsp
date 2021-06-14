@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ include file="/validarUsuario.jsp" %>
 	<!DOCTYPE html>
 	<html lang="pt-br">
 
@@ -11,23 +12,13 @@
 	</head>
 
 	<body>
-		<header>
-			<nav class="dropdown">
-				<button class="dropbtn" style="font-size: 24px; color: white;"><i class="fas fa-bars"></i></button>
-				<div class="dropdown-content">
-					<a href="NovoCliente.html">Cadastrar Cliente</a>
-					<a href="readcliente">Alterar Cliente</a>
-					<a href="#">Efetuar Reserva</a>
-					<a href="#">Consultar Reserva</a>
-					<a href="#">Fazer Check-in</a>
-					<a href="#">Fazer Check-out</a>
-				</div>
-			</nav>
-			<div class="info-user">
-				<p>Olá, <span>Usuário</span></p><a href="#" class="bttred">Sair</a>
-			</div>
-		</header>
-		
+
+	<% if(usuario.getUsuario().equals("admin")){%>
+	<%@include file="/headerAdmin.jsp" %>
+	<%}else{%>
+	<%@include file="/header.jsp" %>
+	<%}%>
+
 		<form name="frmCliente" action="updatecliente">
 			<h1>Editar Cliente</h1>
 			<table>
@@ -114,6 +105,7 @@
 				</tr>
 			</table>
 			<input type="button" value="Salvar" class="bttblue" onclick="validarCliente()">
+			<a href="readcliente?code=1" class="bttred">Voltar</a>
 		</form>
 		<script src="scripts/validador.js"></script>
 	</body>

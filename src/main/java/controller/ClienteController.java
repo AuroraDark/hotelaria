@@ -11,14 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.ClienteDAO;
+import model.QuartoDAO;
 import model.Cliente;
+import model.Quarto;
 import model.Cartao;
 
 @WebServlet(urlPatterns = { "/Controller", "/main", "/createcliente", "/readcliente", "/selectcliente", "/updatecliente", "/deletecliente"})
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ClienteDAO dao = new ClienteDAO();
+	QuartoDAO daoq = new QuartoDAO();
 	Cliente cliente = new Cliente();
+	Quarto quarto = new Quarto();
 	Cartao cartao = new Cartao();
 	
 	public ClienteController() {
@@ -28,7 +32,7 @@ public class ClienteController extends HttpServlet {
 			throws ServletException, IOException {
 		String action = request.getServletPath();
 		if(action.equals("/main")) {
-			response.sendRedirect("Menu.html");
+			response.sendRedirect("Menu.jsp");
 		}else if(action.equals("/createcliente")) {
 			efetuarCadastroCliente(request,response);
 		}else if(action.equals("/readcliente")) {
@@ -40,12 +44,14 @@ public class ClienteController extends HttpServlet {
 		}else if(action.equals("/deletecliente")) {
 			deletarCliente(request,response);
 		}else {
-			response.sendRedirect("Menu.html");
+			response.sendRedirect("Menu.jsp");
 		}
 	}
 	
 	//Cadastrar Cliente
 	protected void efetuarCadastroCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String redir = request.getParameter("redir");
+		System.out.println(redir);
 		cliente.setNome(request.getParameter("nome"));
 		cliente.setFone(request.getParameter("fone"));
 		cliente.setEmail(request.getParameter("email"));
@@ -62,23 +68,34 @@ public class ClienteController extends HttpServlet {
 		dao.inserirCliente(cliente);
 		dao.inserirCartao(cartao);
 		
-		response.sendRedirect("main");
+		if(redir.equals("1")) {
+			response.sendRedirect("main");
+		}else {
+			response.sendRedirect("readcliente?code=2");
+		}
 	}
 	
 	//Listar Clientes
 	protected void listarClientes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String code = request.getParameter("code");
 		ArrayList<Cliente> listaclientes = dao.listarClientes();
 		ArrayList<Cartao> listacartoes = dao.listarCartoes();
 
 		request.setAttribute("clientes",listaclientes);
 		request.setAttribute("cartoes", listacartoes);
-		RequestDispatcher rd = request.getRequestDispatcher("SelecionarCliente.jsp");
-		rd.forward(request, response);
+		if(code.equals("1")) {
+			RequestDispatcher rd = request.getRequestDispatcher("SelecionarCliente.jsp");
+			rd.forward(request, response);
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("ListarClientes.jsp");
+			rd.forward(request, response);
+		}
 	}
 	
 	//Listar o cliente a ser editado
 	protected void exibirCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String codCli = request.getParameter("codCli");
+		String code = request.getParameter("code");
 		
 		cliente.setCodCli(codCli);
 		cartao.setCodCli(codCli);
@@ -100,8 +117,15 @@ public class ClienteController extends HttpServlet {
 		request.setAttribute("cNum", cartao.getcNum());
 		request.setAttribute("cVal", cartao.getcVal());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("EditarCliente.jsp");
-		rd.forward(request, response);
+		if(code.equals("1")){
+			RequestDispatcher rd = request.getRequestDispatcher("EditarCliente.jsp");
+			rd.forward(request, response);
+		}else {
+			ArrayList<Quarto> listaquartos = daoq.listarQuartos();
+			request.setAttribute("quartos", listaquartos);
+			RequestDispatcher rd = request.getRequestDispatcher("NovaReserva.jsp");
+			rd.forward(request, response);
+		}
 	}
 	
 	//Editar Clientes
@@ -124,7 +148,7 @@ public class ClienteController extends HttpServlet {
 		dao.alterarCliente(cliente);
 		dao.alterarCartao(cartao);
 		
-		response.sendRedirect("readcliente");
+		response.sendRedirect("readcliente?code=1");
 	}
 	
 	//Remover Clientes
@@ -136,6 +160,6 @@ public class ClienteController extends HttpServlet {
 		dao.deletarCliente(cliente);
 		dao.deletarCartao(cartao);
 		
-		response.sendRedirect("readcliente");
+		response.sendRedirect("readcliente?code=1");
 	}
 }

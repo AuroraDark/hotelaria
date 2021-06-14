@@ -16,3 +16,10 @@ function confirmarCliente(CodCli){
 		window.location.href = "deletecliente?CodCli=" + CodCli
 	}
 }
+
+function cancelar(){
+	let resposta = confirm("Cancelar a operação?")
+	if (resposta === true){
+		window.location.href = "Menu.jsp"
+	}
+}

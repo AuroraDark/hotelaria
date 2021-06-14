@@ -81,9 +81,10 @@ public class FuncionarioDAO {
 	}
 
 	/*CRUD UPDATE*/
-	public void selecionarUsuario(Funcionario func) {
+	public boolean selecionarUsuario(Funcionario func) {
 		String readUsuario = "SELECT * FROM funcionarios WHERE codFunc = ?";
 		try {
+			boolean resultado = false;
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(readUsuario);
 			pst.setString(1, func.getCodFunc());
@@ -99,10 +100,13 @@ public class FuncionarioDAO {
 				func.setCep(rs.getString(8));
 				func.setNumEnd(rs.getString(9));
 				func.setComplemento(rs.getString(10));
+				resultado=true;
 			}
 			con.close();
+			return resultado;
 		} catch (Exception e) {
 			System.out.println(e);
+			return false;
 		}
 	}
 
@@ -144,6 +148,26 @@ public class FuncionarioDAO {
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
+		}
+	}
+	
+	/*Verificar Nome de usuário*/
+	public boolean selecionarNomeUsuario(String usuario) {
+		String readUsuario = "SELECT * FROM funcionarios WHERE usuario = ?";
+		try {
+			boolean existe = false;
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(readUsuario);
+			pst.setString(1, usuario);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				existe = true;
+			}
+			con.close();
+			return existe;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
 		}
 	}
 }

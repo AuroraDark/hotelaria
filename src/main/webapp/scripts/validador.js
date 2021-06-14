@@ -54,6 +54,7 @@ function validarCliente() {
 		frmCliente.cVal.focus()
 		return false
 	} else {
+		alert('Dados inseridos com sucesso!')
 		document.forms["frmCliente"].submit()
 	}
 }
@@ -108,6 +109,67 @@ function validarUsuario() {
 		return false
 
 	} else {
+		alert('Dados inseridos com sucesso!')
 		document.forms["formUsuario"].submit()
+	}
+}
+
+function validarLogin() {
+	let usuario = formLogin.usuario.value
+	let senha = formLogin.senha.value
+	if (usuario === "") {
+		alert('Preencha o campo Usuário')
+		formLogin.usuario.focus()
+		return false
+
+	} else if (senha === "") {
+		alert('Preencha o campo Senha')
+		formLogin.senha.focus()
+		return false
+
+	} else {
+		document.forms["formLogin"].submit()
+	}
+}
+
+function validarReserva(){
+	let dataInicio = frmReserva.dataInicio.value
+	let dataFim = frmReserva.dataFim.value
+	let numQuarto = frmReserva.numQuarto.value
+	let dataHoje = new Date()
+	let mes = '' + (dataHoje.getMonth() + 1)
+	let dia = '' + dataHoje.getDate()
+	let ano = '' + dataHoje.getFullYear();
+	if(mes.length < 2){
+		mes = '0' + mes;
+	}
+	if(dia.length<2){
+		dia = '0' + dia;
+	}
+	dataHoje = [ano,mes,dia].join('-');
+
+	if(dataInicio === ""){
+		alert('Preencha o campo Check-In')
+		frmReserva.dataInicio.focus()
+		return false
+	}else if (dataFim === ""){
+		alert('Preencha o campo Check-Out')
+		frmReserva.dataFim.focus()
+		return false
+	}else if (numQuarto === ""){
+		alert('Selecione um quarto.')
+		frmReserva.numQuarto.focus()
+		return false
+	}else if(dataInicio<dataHoje){
+		alert('Data inválida. Selecione um período de estadia válido.')
+		frmReserva.dataInicio.focus()
+		return false
+	}else if(dataFim<dataInicio){
+		alert('Data inválida. Selecione um período de estadia válido.')
+		frmReserva.dataFim.focus()
+		return false
+	}else{
+		alert('Datas OK (Fillipe: Código termina aqui)')
+		return false
 	}
 }

@@ -50,7 +50,7 @@ public class FuncionarioController extends HttpServlet {
 		}else if (action.equals("/deleteUsuario")) {
 			deletarUsuario(request,response);
 		} else {
-			response.sendRedirect("index.html");
+			response.sendRedirect("index.jsp");
 		}
 	}
 
@@ -65,27 +65,32 @@ public class FuncionarioController extends HttpServlet {
 		if (action.equals("/CadastroUsuario")) {
 			inserirFunc(request, response);
 		} else {
-			response.sendRedirect("index.html");
+			response.sendRedirect("index.jsp");
 		}
 	}
 
 	protected void inserirFunc(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String senhaCriptografada = passwordEncryptor.encryptPassword(request.getParameter("senha"));
-		func.setNome(request.getParameter("nome"));
-		func.setCpf(request.getParameter("cpf"));
-		func.setEmail(request.getParameter("email"));
-		func.setDataNascimento(request.getParameter("dataNasc"));
-		func.setCep(request.getParameter("cep"));
-		func.setNumEnd(request.getParameter("num"));
-		func.setComplemento(request.getParameter("complemento"));
-		func.setUsuario(request.getParameter("usuario"));
-		func.setSenha(senhaCriptografada);
+		String usuario = request.getParameter("usuario");
+		if(dao.selecionarNomeUsuario(usuario)) {
+			response.sendRedirect("cadastroUsuario.jsp?erro=201");
+		}else{
+			String senhaCriptografada = passwordEncryptor.encryptPassword(request.getParameter("senha"));
+			func.setNome(request.getParameter("nome"));
+			func.setCpf(request.getParameter("cpf"));
+			func.setEmail(request.getParameter("email"));
+			func.setDataNascimento(request.getParameter("dataNasc"));
+			func.setCep(request.getParameter("cep"));
+			func.setNumEnd(request.getParameter("num"));
+			func.setComplemento(request.getParameter("complemento"));
+			func.setUsuario(request.getParameter("usuario"));
+			func.setSenha(senhaCriptografada);
 
-		dao.inserirFuncionario(func);
-		//response.setCharacterEncoding("UTF-8");
-		response.sendRedirect("listarUsuarios");
+			dao.inserirFuncionario(func);
+			//response.setCharacterEncoding("UTF-8");
+			response.sendRedirect("listarUsuarios");
+		}
 	}
 
 	protected void funcionarios(HttpServletRequest request, HttpServletResponse response)
