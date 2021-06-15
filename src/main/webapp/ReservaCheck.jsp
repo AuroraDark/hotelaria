@@ -13,16 +13,20 @@
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body>
+<body class="reserva-check">
 
 <% if(usuario.getUsuario().equals("admin")){%>
 <%@include file="/headerAdmin.jsp" %>
 <%}else{%>
 <%@include file="/header.jsp" %>
 <%}%>
-
-    <a href="NovoCliente.jsp?redir=2" class="bttblue">Novo Cliente</a>
-	<a href="readcliente?code=2" class="bttblue">Cliente existente</a>
-	<a href="Menu.jsp" class="bttred">Voltar</a>
+<h1 class="h1-menu">Efetuar Reserva</h1>
+<div class="menu">
+	<section class="cards">
+    <a href="NovoCliente.jsp?redir=2" class="card"><img src="assets/add-user.png" alt="add-user"><p>Novo Cliente</p></a>
+	<a href="readcliente?code=2" class="card"><img src="assets/user.png" alt="user"><p>Cliente existente</p></a>
+	</section>
+</div>
+<a href="Menu.jsp" class="bttred">Voltar</a>
 </body>
 </html>

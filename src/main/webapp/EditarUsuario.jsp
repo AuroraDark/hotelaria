@@ -25,44 +25,44 @@
 			<tr>
 				<td class="form__group field"><input type="text" name="nome" id="nome" class="form__field"
 						maxlength="50" value="<%out.print(request.getAttribute("nome"));%>">
-					<label for="nome" class="form__label">Nome Completo</label>
+					<label for="nome" class="form__label">*Nome Completo</label>
 				</td>
 			</tr>
 			<tr>
 				<td class="form__group field"><input type="text" name="email" id="email" maxlength="50"
 						class="form__field" value="<%out.print(request.getAttribute("email"));%>">
-					<label for="email" class="form__label">Email</label>
+					<label for="email" class="form__label">*Email</label>
 				</td>
 			</tr>
 			<tr>
 				<td class="form__group field"><input type="text" name="cpf" id="cpf" maxlength="11"
 						class="form__field" value="<%out.print(request.getAttribute("cpf"));%>">
-					<label for="cpf" class="form__label">CPF</label>
+					<label for="cpf" class="form__label">*CPF</label>
 				</td>
 			</tr>
 			<tr>
 				<td class="form__group field"><input type="date" name="dataNasc" id="dataNasc" class="form__field"
 						value="<%out.print(request.getAttribute("dataNasc"));%>">
-					<label for="dataNasc" class="form__label">Data de Nascimento</label>
+					<label for="dataNasc" class="form__label">*Data de Nascimento</label>
 				</td>
 			</tr>
 			<tr>
 				<td class="form__group field"><input type="text" name="cep" id="cep" maxlength="8"
 						class="form__field" value="<%out.print(request.getAttribute("cep"));%>">
-					<label for="cep" class="form__label">CEP</label>
+					<label for="cep" class="form__label">*CEP</label>
 				</td>
 			</tr>
 			<tr>
 				<td class="form__group field"><input type="text" name="num" id="num" maxlength="4"
 						class="form__field" value="<%out.print(request.getAttribute("numEnd"));%>">
-					<label for="num" class="form__label">Número no Endereço</label>
+					<label for="num" class="form__label">*Número no Endereço</label>
 				</td>
 			</tr>
 			<tr>
 				<td class="form__group field"><input type="text" name="complemento" id="complemento" maxlength="50"
 						class="form__field" value="<%out.print((request.getAttribute("complemento").equals("")
 						? "N/A" : request.getAttribute("complemento")));%>">
-					<label for="complemento" class="form__label">Complemento</label>
+					<label for="complemento" class="form__label">Complemento (Opcional)</label>
 				</td>
 			</tr>
 			<tr>
@@ -73,13 +73,13 @@
 			<tr>
 				<td class="form__group field"><input type="text" name="usuario" id="usuario" maxlength="30"
 						class="form__field" value="<%out.print(request.getAttribute("usuario"));%>">
-					<label for="usuario" class="form__label">Usuário</label>
+					<label for="usuario" class="form__label">*Usuário</label>
 				</td>
 			</tr>
 			<tr>
 				<td class="form__group field"><input type="password" name="senha" id="senha" maxlength="50"
 						class="form__field" value="<%out.print(request.getAttribute("senha"));%>">
-					<label for="senha" class="form__label">Senha</label>
+					<label for="senha" class="form__label">*Senha</label>
 				</td>
 			</tr>
 		</table>

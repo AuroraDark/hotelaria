@@ -26,47 +26,34 @@
 <%}else{%>
 <%@include file="/header.jsp" %>
 <%}%>
-	<h1>Selecione um cliente para Alterar:</h1>
-	<table id="tabela">
+<div class="centralizar"><h1>Editar Clientes</h1></div>
+<section class="centralizar">
+	<table border="0" cellspacing="0" cellpadding="0" id="tabela">
 		<thead>
 			<tr>
-				<th>Código</th>
+				<th>#</th>
 				<th>Nome</th>
 				<th>Telefone</th>
-				<th>E-mail</th>
 				<th>CPF</th>
-				<th>Data de Nascimento</th>
-				<th>CEP</th>
-				<th>Número</th>
-				<th>Complemento</th>
 				<th>Tipo de Cartão</th>
-				<th>Nome no Cartão</th>
-				<th>Número do Cartão</th>
-				<th>Validade do Cartão</th>
+				<th class="edicao">Edição</th>
 			</tr>
 		</thead>
 		<tbody>
 			<%for (int i = 0; i < listaclientes.size();i++){ %>
 				<tr>
-					<td><%=listaclientes.get(i).getCodCli() %></td>
+					<th><%=listaclientes.get(i).getCodCli() %></th>
 					<td><%=listaclientes.get(i).getNome() %></td>
 					<td><%=listaclientes.get(i).getFone() %></td>
-					<td><%=listaclientes.get(i).getEmail() %></td>
 					<td><%=listaclientes.get(i).getCpf() %></td>
-					<td><%=listaclientes.get(i).getDataNascimento() %></td>
-					<td><%=listaclientes.get(i).getCep() %></td>
-					<td><%=listaclientes.get(i).getNumEnd() %></td>
-					<td><%=listaclientes.get(i).getComplemento() %></td>
 					<td><%=(listacartoes.get(i).getTipo().equals("1") ? "Débito" : "Crédito")%></td>
-					<td><%=listacartoes.get(i).getcNome() %></td>
-					<td><%=listacartoes.get(i).getcNum() %></td>
-					<td><%=listacartoes.get(i).getcVal() %></td>
-					<td><a href="selectcliente?codCli=<%=listaclientes.get(i).getCodCli() %>&code=1" class="bttblue">Editar</a><a href="javascript: confirmarCliente(<%=listaclientes.get(i).getCodCli() %>)" class="bttred">Deletar</a></td>
+					<td class="edicao"><a href="selectcliente?codCli=<%=listaclientes.get(i).getCodCli() %>&code=1" class="bttblue" style="font-size: 20px; color: white;"><i class="fas fa-pen"></i></a><a href="javascript: confirmarCliente(<%=listaclientes.get(i).getCodCli() %>)" class="bttred" style="font-size: 20px; color: white;"><i class="fas fa-trash-alt"></i></a></td>
 				</tr>
 				<%} %>
 		</tbody>
 	</table>
-	<script src="scripts/confirmador.js"></script>
-	<a href="Menu.jsp" class="bttred">Voltar</a>
+</section>
+<script src="scripts/confirmador.js"></script>
+<div class="centralizar"><a href="Menu.jsp" class="bttred">Voltar</a></div>
 </body>
 </html>

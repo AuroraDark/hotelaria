@@ -62,7 +62,7 @@
 				<td class="form__group field"><input type="text"
 					name="complemento" placeholder="Complemento" maxlength="50"
 					class="form__field"><label for="complemento"
-					class="form__label">*Complemento</label></td>
+					class="form__label">Complemento (Opcional)</label></td>
 			<tr>
 				<td><br>
 					<h2>Dados para Login</h2></td>

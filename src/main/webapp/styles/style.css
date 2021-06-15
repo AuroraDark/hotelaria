@@ -18,13 +18,18 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 60px;
+    height: 61px;
     background-color: var(--azul);
+}
+
+.home {
+    margin-left: 10px;
 }
 
 body {
     background: #f0f0f5;
     -webkit-font-smoothing: antialiased;
+
 }
 
 h1 {
@@ -263,22 +268,96 @@ form .bttblue {
     box-shadow: none;
 }
 
+/*=============================== Login ===============================*/
+
 .form_login  {
     width: 500px;
     padding: 60px 20px;
     border-radius: 20px;
-    margin-left: 20px;
-    margin-top: 100px;
     background-color: #f0f0f5;
+    margin: 0;
+    margin-bottom: 20px;
 }
 
+
 .login_body {
-    background-image: url("https://images.unsplash.com/photo-1566073771259-6a8506099945?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+    background-image: url(https://images.unsplash.com/photo-1566073771259-6a8506099945?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80);
     background-repeat: no-repeat;
     background-size: cover;
     top: 0;
     margin: 0;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
+
+.login_body a {
+    color: var(--azul);
+}
+
+/*=============================== Menu Reserva ===============================*/
+
+.reserva-check {
+    text-align: center;
+}
+
+.reserva-check .cards {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 50px;
+}
+
+/*=============================== Tabelas ===============================*/
+
+#tabela {
+
+    width: 60%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: white;
+    min-width: 850px;
+
+}
+
+#tabela th, #tabela td{
+    padding: 12px 5px;
+    text-align: left;
+    border: none;
+
+}
+
+#tabela tbody tr:hover {
+    background-color: #edf5ff;
+}
+
+#tabela .edicao{
+    width: 105px;
+}
+
+#tabela thead {
+    background-color: var(--azul);
+    color: white;
+}
+
+#tabela .bttred, #tabela .bttblue {
+    padding: 7px 11px;
+    margin: 2px;
+}
+
+.centralizar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.centralizar h1 {
+    margin-top: 20px;
+}
+
+
 
 
