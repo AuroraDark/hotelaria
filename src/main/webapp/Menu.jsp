@@ -17,12 +17,13 @@
 
 <body>
     <%@include file="/header.jsp" %>
-	<div class="menu">	
+	<h1 class="h1-menu">Menu Principal</h1>
+	<div class="menu">
 	<section class="cards">
-		<a href="ReservaCheck.jsp" class="card"><img src="https://image.flaticon.com/icons/png/512/3112/3112979.png" alt="sino"><p>Efetuar Reserva</p></a>
-		<a href="#" class="card"><img src="https://image.flaticon.com/icons/png/512/639/639375.png" alt="lupa"><p>Consultar Reserva</p></a>
-		<a href="#" class="card"><img src="https://image.flaticon.com/icons/png/512/1828/1828466.png" alt="entrar"><p>Fazer Check-in</p></a>
-		<a href="#" class="card"><img src="https://image.flaticon.com/icons/png/512/1828/1828490.png" alt="sair"><p>Fazer Check-out</p></a>
+		<a href="ReservaCheck.jsp" class="card"><img src="assets/keys.png" alt="sino"><p>Efetuar Reserva</p></a>
+		<a href="#" class="card"><img src="assets/lupa.png" alt="lupa"><p>Consultar Reserva</p></a>
+		<a href="#" class="card"><img src="assets/entrar.png" alt="entrar"><p>Fazer Check-in</p></a>
+		<a href="#" class="card"><img src="assets/sair.png" alt="sair"><p>Fazer Check-out</p></a>
 	</section>
 </div>
 </body>

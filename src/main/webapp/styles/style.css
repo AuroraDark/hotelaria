@@ -23,13 +23,20 @@ header {
 }
 
 body {
-    height: 100%;
     background: #f0f0f5;
     -webkit-font-smoothing: antialiased;
 }
 
+h1 {
+    color: var(--azul);
+}
+
+.h1-menu {
+text-align: center;
+    margin-top: 30px;
+}
+
 .menu {
-    height: calc(100% - 60px);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -113,7 +120,8 @@ a {
   }
 
   .dropdown-p {
-      color: var(--azul);
+      color: white;
+      background-color: var(--azul);
   }
 
   /* Change color of dropdown links on hover */
@@ -130,10 +138,11 @@ a {
   }
 
   .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 500px;
-    gap: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      width: 600px;
+      gap: 30px;
+      margin-top: 30px;
 }
 
 .card p {
@@ -142,15 +151,19 @@ a {
 }
 
     .card {
-    background-color:white;
-    box-shadow: 5px 10px 10px #0005;
-    padding: 10px;
-    border-radius: 8px;
-    padding-top: 40px;
-    padding-bottom: 20px;
-    text-align: center;
+        background-color: white;
+        box-shadow: 2px 2px 2px #0002;
+        padding: 10px;
+        border-radius: 8px;
+        padding-top: 40px;
+        padding-bottom: 20px;
+        text-align: center;
 
 }
+    .card:hover {
+        box-shadow: 4px 4px 4px #0003;
+        transition: 0.3s;
+    }
 
     .card img {
     width: 30%;
@@ -248,6 +261,24 @@ form .bttblue {
 /* reset input */
 .form__field:required, .form__field:invalid {
     box-shadow: none;
+}
+
+.form_login  {
+    width: 500px;
+    padding: 60px 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-top: 100px;
+    background-color: #f0f0f5;
+}
+
+.login_body {
+    background-image: url("https://images.unsplash.com/photo-1566073771259-6a8506099945?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    margin: 0;
+    width: 100%;
 }
 
 
