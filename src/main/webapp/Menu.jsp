@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/validarUsuario.jsp" %>
-<%  if((usuario.getUsuario().equals("admin"))) {
-	response.sendRedirect("MenuAdmin.jsp");
-     } %>
+<%
+	if(usuario != null){
+		if ((usuario.getUsuario().equals("admin"))) {
+			response.sendRedirect("MenuAdmin.jsp");
+		}
+	}
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 

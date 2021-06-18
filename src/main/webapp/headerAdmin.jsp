@@ -20,5 +20,5 @@
     </nav>
         <a href="MenuAdmin.jsp" class="home" style="font-size: 24px; color: white;"><i class="fas fa-home"></i></a>
     </div>
-    <div class="info-user"><p>Olá, <span><%=usuario.getNome() %></span></p><a href="sair.jsp" class="bttred">Sair</a></div>
+    <div class="info-user"><p>Olá, <span><%if(usuario != null){ out.print(usuario.getNome());} %></span></p><a href="sair.jsp" class="bttred">Sair</a></div>
 </header>
