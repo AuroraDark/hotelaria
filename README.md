@@ -17,6 +17,7 @@
 - [x] Java para Web
 - [x] Estilização por CSS
 - [x] JDBC e MySQL
+- [x] Maven 
 
 ## Prints e Gifs
 
