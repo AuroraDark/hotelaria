@@ -2,7 +2,7 @@
 
 ## Funcionalidades
 
-- Da aplicação
+### Da aplicação
 - [x] CRUD de Clientes, Usuários, Quartos e Reservas
 - [x] Login e Session
 - [x] Controle de acesso por priviégios (Admin e Funcionário)
@@ -11,7 +11,7 @@
 - [x] Check-in e Check-out
 - [x] Mecanismo de Busca
 
-- Skills trabalhadas
+### Skills trabalhadas
 - [x] REST Api
 - [x] Padrão MVC
 - [x] Java para Web
@@ -20,26 +20,26 @@
 
 ## Prints e Gifs
 
-- Login
+### Login
 ![telalogin](prints/print4.png)
 
 ![giflogin](prints/login.gif)
 
-- Controle de Acesso
+### Controle de Acesso
 
-Usuários cadastrados no sistema (acessados somente pelo admin)
+#### Usuários cadastrados no sistema (acessados somente pelo admin)
 ![listausuarios](prints/listausers.png)
 ![cadastrofunc](prints/criafunc.png)
 
-Menu do Admin
+#### Menu do Admin
 ![menuadmin](prints/menuadmin.png)
 
-Menu do Funcionário
+#### Menu do Funcionário
 ![menufunc](prints/menufunc.png)
 
-- Reserva
+### Reserva
 
-Menu de Reserva
+#### Menu de Reserva
 ![menureserva](prints/menureserva.png)
 ![reserva](prints/reserva.gif)
 
