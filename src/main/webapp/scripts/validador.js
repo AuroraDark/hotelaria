@@ -13,29 +13,61 @@ function validarCliente() {
 	let cNome = frmCliente.cNome.value
 	let cNum = frmCliente.cNum.value
 	let cVal = frmCliente.cVal.value
+	let dataHoje = new Date()
+	let mes = '' + (dataHoje.getMonth() + 1)
+	let dia = '' + dataHoje.getDate()
+	let ano = '' + dataHoje.getFullYear();
+	if(mes.length < 2){
+		mes = '0' + mes;
+	}
+	if(dia.length<2){
+		dia = '0' + dia;
+	}
+	dataHoje = [ano,mes,dia].join('-');
+
 	if (nome === "") {
 		alert('Preencha o campo Nome')
 		frmCliente.nome.focus()
 		return false
 	} else if (fone === "") {
-		alert('Preencha o campo Fone')
+		alert('Preencha o campo Telefone')
+		frmCliente.fone.focus()
+		return false
+	}else if (fone.length < 8) {
+		alert('Telefone inválido, insira um telefone válido')
 		frmCliente.fone.focus()
 		return false
 	} else if (email === "") {
 		alert('Preencha o campo E-mail')
 		frmCliente.email.focus()
 		return false
-	} else if (cpf === "") {
+	} else if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(frmCliente.email.value))){
+		alert("Email inválido")
+		frmCliente.email.focus()
+		return (false)
+	}else if (cpf === "") {
 		alert('Preencha o campo CPF')
+		frmCliente.cpf.focus()
+		return false
+	}else if (cpf.length < 11) {
+		alert('O campo cpf precisa ter 11 caracteres')
 		frmCliente.cpf.focus()
 		return false
 	} else if (dataNascimento === "") {
 		alert('Preencha o campo Data de Nascimento')
 		frmCliente.dataNascimento.focus()
 		return false
+	} else if (dataNascimento>=dataHoje) {
+		alert('Data de nascimento inválida, selecione uma data válida')
+		frmCliente.dataNasc.focus()
+		return false
 	} else if (cep === "") {
 		alert('Preencha o campo CEP')
 		frmCliente.cep.focus()
+		return false
+	} else if (cep.length < 8) {
+		alert('O campo cep precisa ter 8 caracteres')
+		frmCliente.cpf.focus()
 		return false
 	} else if (tipo === "") {
 		alert('Preencha o campo Tipo de Cartão (1=Crédito, 2=Débito)')
@@ -49,8 +81,16 @@ function validarCliente() {
 		alert('Preencha o campo Número do Cartão')
 		frmCliente.cNum.focus()
 		return false
-	} else if (cVal === "") {
+	} else if (cNum.length < 16) {
+		alert('Número do cartão inválido, digite um número válido')
+		frmCliente.cNum.focus()
+		return false
+	}  else if (cVal === "") {
 		alert('Preencha o campo Validade do Cartão')
+		frmCliente.cVal.focus()
+		return false
+	}else if (cVal<=dataHoje) {
+		alert('Data inválida, selecione uma data válida')
 		frmCliente.cVal.focus()
 		return false
 	} else {
@@ -68,6 +108,18 @@ function validarUsuario() {
 	let dataNasc = formUsuario.dataNasc.value
 	let cep = formUsuario.cep.value
 	let num = formUsuario.num.value
+	let dataHoje = new Date()
+	let mes = '' + (dataHoje.getMonth() + 1)
+	let dia = '' + dataHoje.getDate()
+	let ano = '' + dataHoje.getFullYear();
+	if(mes.length < 2){
+		mes = '0' + mes;
+	}
+	if(dia.length<2){
+		dia = '0' + dia;
+	}
+	dataHoje = [ano,mes,dia].join('-');
+
 	if (nome === "") {
 		alert('Preencha o campo Nome')
 		formUsuario.nome.focus()
@@ -78,13 +130,26 @@ function validarUsuario() {
 		formUsuario.cpf.focus()
 		return false
 
+	}else if (cpf.length < 11) {
+		alert('CPF inválido, preencha um CPF válido')
+		formUsuario.cpf.focus()
+		return false
 	} else if (email === "") {
 		alert('Preencha o campo Email')
 		formUsuario.email.focus()
 		return false
 
-	} else if (dataNasc === "") {
+	}else  if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(formUsuario.email.value))){
+        alert("Email inválido")
+        return (false)
+
+    } else if (dataNasc === "") {
 		alert('Preencha o campo Data de Nascimento')
+		formUsuario.dataNasc.focus()
+		return false
+
+	}else if (dataNasc>=dataHoje) {
+		alert('Data inválida, selecione uma data válida')
 		formUsuario.dataNasc.focus()
 		return false
 
@@ -93,7 +158,11 @@ function validarUsuario() {
 		formUsuario.cep.focus()
 		return false
 
-	} else if (num === "") {
+	}else if (cep.length < 8) {
+		alert('CEP inválido, preencha um CEP válido')
+		formUsuario.cep.focus()
+		return false
+	}else if (num === "") {
 		alert('Preencha o campo Número')
 		formUsuario.num.focus()
 		return false
@@ -107,9 +176,7 @@ function validarUsuario() {
 		alert('Preencha o campo Senha')
 		formUsuario.senha.focus()
 		return false
-
 	} else {
-		alert('Dados inseridos com sucesso!')
 		document.forms["formUsuario"].submit()
 	}
 }
