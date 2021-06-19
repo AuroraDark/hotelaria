@@ -52,4 +52,23 @@ public class QuartoDAO {
 			return null;
 		}
 	}
+	public void selecionarQuarto(Quarto quarto) {
+		String readquarto = "select * from quartos where numQuarto = ?";
+		try {
+			Connection con = conectar();
+			PreparedStatement pstc = con.prepareStatement(readquarto);
+			pstc.setInt(1, quarto.getNumQuarto());
+			ResultSet rsc = pstc.executeQuery();
+			while(rsc.next()) {
+				//Setar a variável Cartão
+				 quarto.setNumQuarto(rsc.getInt(1));
+				 quarto.setDescricao(rsc.getString(2));
+				 quarto.setValorDiaria(rsc.getDouble(3));
+				 quarto.setStatusDisp(rsc.getBoolean(4));
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }

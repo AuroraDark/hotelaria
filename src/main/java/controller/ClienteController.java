@@ -51,7 +51,6 @@ public class ClienteController extends HttpServlet {
 	//Cadastrar Cliente
 	protected void efetuarCadastroCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String redir = request.getParameter("redir");
-		System.out.println(redir);
 		cliente.setNome(request.getParameter("nome"));
 		cliente.setFone(request.getParameter("fone"));
 		cliente.setEmail(request.getParameter("email"));

@@ -48,12 +48,12 @@
 					<td><%=listaclientes.get(i).getFone() %></td>
 					<td><%=listaclientes.get(i).getCpf() %></td>
 					<td><%=(listacartoes.get(i).getTipo().equals("1") ? "Débito" : "Crédito")%></td>
-					<td class="edicao"><a href="selectcliente?codCli=<%=listaclientes.get(i).getCodCli()%>&code=2" class="bttblue">Selecionar</a></td>
+					<td class="edicao"><a href="selectcliente?codCli=<%=listaclientes.get(i).getCodCli() %>&code=2" class="bttblue">Selecionar</a></td>
 				</tr>
 				<%} %>
 		</tbody>
 	</table>
 </section>
-<div class="centralizar"><a href=ReservaCheck.jsp" class="bttred">Voltar</a></div>
+<div class="centralizar"><a href="ReservaCheck.jsp" class="bttred">Voltar</a></div>
 </body>
 </html>

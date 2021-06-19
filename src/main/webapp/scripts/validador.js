@@ -236,7 +236,26 @@ function validarReserva(){
 		frmReserva.dataFim.focus()
 		return false
 	}else{
-		alert('Datas OK (Fillipe: Código termina aqui)')
+		document.forms["frmReserva"].submit()
+	}
+}
+
+function validarPagamento(){
+	let cvv = frmPagamento.cvv.value
+	let formaPagamento = frmPagamento.formaPagamento.value
+	
+	if(cvv === ""){
+		alert('Preencha o campo CVV')
+		frmPagamento.cvv.focus()
 		return false
+	}else if(cvv.length < 3){
+		alert('CVV inválido')
+		frmPagamento.cvv.focus()
+		return false
+	}else if(formaPagamento === ""){
+		alert('Escolha uma forma de pagamento')
+		return false
+	}else{
+		document.forms["frmPagamento"].submit()
 	}
 }

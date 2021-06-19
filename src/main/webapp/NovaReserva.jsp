@@ -26,7 +26,8 @@
 <%@include file="/header.jsp" %>
 <%}%>
 
-	<form name="frmReserva" action="">
+	<form name="frmReserva" action="pagamento">
+		<input type="hidden" name="code" value="1">
 		<input type="hidden" name="codCli" value="<%out.print(request.getParameter("codCli"));%>">
 		<h1>Selecione a data de estadia e o quarto:</h1>
 		<table>
@@ -44,35 +45,18 @@
 			<% for (int i = 0; i < listaquartos.size();i++){ %>
 				<tr>
 					<td>
-						<input type="radio" name="numQuarto" value="<%out.println(listaquartos.get(i).getNumQuarto());%>">
-						<label for="Quarto <%out.println(listaquartos.get(i).getNumQuarto());%>">
-						Quarto <%out.println(listaquartos.get(i).getNumQuarto());%>:<br>
-						<%out.println(listaquartos.get(i).getDescricao());%><br>
-						Valor da diária: <%out.println(listaquartos.get(i).getValorDiaria());%></label><br>
+						<input type="radio" name="numQuarto" value="<%out.print(listaquartos.get(i).getNumQuarto());%>">
+						<label for="Quarto <%out.print(listaquartos.get(i).getNumQuarto());%>">
+						Quarto <%out.print(listaquartos.get(i).getNumQuarto());%>:<br>
+						<%out.print(listaquartos.get(i).getDescricao());%><br>
+						Valor da diária: <%out.print(listaquartos.get(i).getValorDiaria());%></label><br>
 					</td>
 				</tr>
 			<%} %>
 		</table>
 		<input type="button" value="Reservar" class="bttblue" onclick="validarReserva()">
 	</form>
-	<!-- TESTE DE RECEBIMENTO -->
-	Teste de recebimento:
-	<%out.print(request.getAttribute("nome")); %><br>
-	<%out.print(request.getAttribute("fone")); %><br>
-	<%out.print(request.getAttribute("email")); %><br>
-	<%out.print(request.getAttribute("cpf")); %><br>
-	<%out.print(request.getAttribute("dataNascimento")); %><br>
-	<%out.print(request.getAttribute("cep")); %><br>
-	<%out.print(request.getAttribute("numEnd")); %><br>
-	<%out.print(request.getAttribute("complemento")); %><br>
 	
-	<%for (int i = 0; i < listaquartos.size();i++){
-		out.println(listaquartos.get(i).getNumQuarto());
-		out.println(listaquartos.get(i).getDescricao());
-		out.println(listaquartos.get(i).getValorDiaria());
-		out.println(listaquartos.get(i).isStatusDisp());
-		}%>
-	<br><br><br><br>
 	<a href="javascript: cancelar()" class="bttred">Cancelar</a>
 	<script src="scripts/validador.js"></script>
 	<script src="scripts/confirmador.js"></script>
