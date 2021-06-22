@@ -50,7 +50,7 @@ public class FuncionarioController extends HttpServlet {
 		}else if (action.equals("/deleteUsuario")) {
 			deletarUsuario(request,response);
 		} else {
-			response.sendRedirect("Menu.jsp");
+			response.sendRedirect("index.jsp");
 		}
 	}
 
@@ -97,10 +97,21 @@ public class FuncionarioController extends HttpServlet {
 			throws ServletException, IOException {
 
 		ArrayList<Funcionario> listaUsuarios = dao.listarUsuarios();
-
-		// Encaminhando lista para agenda.jsp(Encaminhar objeto a uma página)
+		/* Teste de recebimento */
+		/*for (int i = 0; i < listaUsuarios.size(); i++) {
+			System.out.println(listaUsuarios.get(i).getCodFunc());
+			System.out.println(listaUsuarios.get(i).getNome());
+			System.out.println(listaUsuarios.get(i).getEmail());
+			System.out.println(listaUsuarios.get(i).getUsuario());
+			System.out.println(listaUsuarios.get(i).getSenha());
+			System.out.println(listaUsuarios.get(i).getCep());
+			System.out.println(listaUsuarios.get(i).getCpf());
+			System.out.println(listaUsuarios.get(i).getNumEnd());
+			System.out.println(listaUsuarios.get(i).getComplemento());
+		}*/
+		// Encaminhando lista para agenda.jsp(Encaminhar objeto a uma pï¿½gina)
 		request.setAttribute("usuarios", listaUsuarios);
-		RequestDispatcher rd = request.getRequestDispatcher("ListarUsuarios.jsp");// seto a página
+		RequestDispatcher rd = request.getRequestDispatcher("ListarUsuarios.jsp");// seto a pï¿½gina
 		rd.forward(request, response);// executa
 
 	}
@@ -130,6 +141,15 @@ public class FuncionarioController extends HttpServlet {
 	private void editarUsuario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String senhaCriptografada = passwordEncryptor.encryptPassword(request.getParameter("senha"));
+		/*System.out.println(request.getParameter("codFunc"));
+		System.out.println(request.getParameter("nome"));
+		System.out.println(request.getParameter("email"));
+		System.out.println(request.getParameter("cpf"));
+		System.out.println(request.getParameter("dataNasc"));
+		System.out.println(request.getParameter("cep"));
+		System.out.println(request.getParameter("num"));
+		System.out.println(request.getParameter("complemento"));
+		System.out.println(request.getParameter("usuario"));*/
 		
 		func.setCodFunc(request.getParameter("codFunc"));
 		func.setNome(request.getParameter("nome"));
@@ -152,7 +172,6 @@ public class FuncionarioController extends HttpServlet {
 		// Recebimento do id(confirmador.js)
 		String codFunc = request.getParameter("codfunc");
 		func.setCodFunc(codFunc);
-		// executar deletarContato(dao)
 		dao.deletarFuncionario(func);
 		response.sendRedirect("listarUsuarios");
 	}

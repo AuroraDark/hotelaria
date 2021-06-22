@@ -90,7 +90,7 @@ function validarCliente() {
 		frmCliente.cVal.focus()
 		return false
 	}else if (cVal<=dataHoje) {
-		alert('Data inválida, selecione uma data válida')
+		alert('Data do cartão inválida, selecione uma data válida')
 		frmCliente.cVal.focus()
 		return false
 	} else {

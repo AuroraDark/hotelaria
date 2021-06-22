@@ -17,6 +17,13 @@ function confirmarCliente(CodCli){
 	}
 }
 
+function confirmarReserva(codReserva){
+	let resposta = confirm("Confirma a exclusão desta reserva?")
+	if (resposta === true){
+		window.location.href = "DeleteReserva?codReserva=" + codReserva
+	}
+}
+
 function cancelar(){
 	let resposta = confirm("Cancelar a operação?")
 	if (resposta === true){

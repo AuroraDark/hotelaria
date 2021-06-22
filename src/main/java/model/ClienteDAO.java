@@ -133,11 +133,13 @@ public class ClienteDAO {
 		}
 	}
 	
-	/** CRUD UPDATE**/
+	/** CRUD UPDATE
+	 * @return**/
 	//Selecionar o contato
-		public void selecionarCliente(Cliente cliente) {
+		public boolean selecionarCliente(Cliente cliente) {
 			String readcliente2 = "select * from clientes where codCli = ?";
 			try {
+				boolean existe = false;
 				Connection con = conectar();
 				PreparedStatement pst = con.prepareStatement(readcliente2);
 				pst.setString(1, cliente.getCodCli());
@@ -153,10 +155,13 @@ public class ClienteDAO {
 				    cliente.setCep(rs.getString(7));
 				    cliente.setNumEnd(rs.getString(8));
 				    cliente.setComplemento(rs.getString(9));
+				    existe = true;
 				}
 				con.close();
+				return existe;
 			} catch (Exception e) {
 				System.out.println(e);
+				return false;
 			}
 		}
 		

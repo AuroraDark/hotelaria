@@ -50,6 +50,14 @@ public class Reserva {
 	public void setDataFim(String dataFim) {
 		this.dataFim = dataFim;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Reserva{" +
+				"codReserva=" + codReserva +
+				", codCli='" + codCli + '\'' +
+				", dataInicio='" + dataInicio + '\'' +
+				", dataFim='" + dataFim + '\'' +
+				'}';
+	}
 }

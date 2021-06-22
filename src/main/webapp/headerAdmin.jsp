@@ -13,7 +13,7 @@
             <a href="NovoCliente.jsp?redir=1" >Cadastrar Cliente</a>
             <a href="readcliente?code=1">Editar Clientes</a>
             <a href="ReservaCheck.jsp">Efetuar Reserva</a>
-            <a href="#">Consultar Reserva</a>
+            <a href="ConsultarReserva.jsp">Consultar Reserva</a>
             <a href="#">Fazer Check-in</a>
             <a href="#">Fazer Check-out</a>
         </div>

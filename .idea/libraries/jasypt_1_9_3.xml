@@ -2,6 +2,7 @@
   <library name="jasypt-1.9.3">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jasypt-1.9.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.20.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

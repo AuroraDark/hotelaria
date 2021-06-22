@@ -25,7 +25,7 @@
 	<div class="menu">
 	<section class="cards">
 		<a href="ReservaCheck.jsp" class="card"><img src="assets/keys.png" alt="sino"><p>Efetuar Reserva</p></a>
-		<a href="#" class="card"><img src="assets/lupa.png" alt="lupa"><p>Consultar Reserva</p></a>
+		<a href="ConsultarReserva.jsp" class="card"><img src="assets/lupa.png" alt="lupa"><p>Consultar Reserva</p></a>
 		<a href="#" class="card"><img src="assets/entrar.png" alt="entrar"><p>Fazer Check-in</p></a>
 		<a href="#" class="card"><img src="assets/sair.png" alt="sair"><p>Fazer Check-out</p></a>
 	</section>
