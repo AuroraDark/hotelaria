@@ -122,6 +122,7 @@ public class ReservaDAO {
 			con.close();
 		} catch (Exception e){
 			System.out.println(e);
+
 		}
 	}
 }
