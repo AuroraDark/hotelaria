@@ -1,0 +1,25 @@
+use dbhotelaria;
+
+CREATE TABLE quartos(
+	numQuarto int primary key auto_increment,
+    descricao varchar(100) not null,
+    valorDiaria double not null,
+	statusDisp boolean not null,
+    urlImage varchar(2000) not null
+);
+
+CREATE TABLE reservas(
+	codReserva int primary key auto_increment,
+    codCli int not null,
+    dataInicio date not null,
+    dataFim date not null,
+    checkin boolean default false not null,
+    checkout boolean default false not null
+);
+
+INSERT INTO quartos (descricao,valorDiaria,statusDisp,urlImage) values ('Cama Casal, banheiro dentro da suite',165,true,'assets/quartoum.jpg');
+INSERT INTO quartos (descricao,valorDiaria,statusDisp,urlImage) values ('Cama Casal, vista para praia',200,true,'assets/quartodois.jpg');
+INSERT INTO quartos (descricao,valorDiaria,statusDisp,urlImage) values ('Cama Solteiro, banheiro dentro da suite',170,true,'assets/quartotres.jpg');
+
+select * from reservas order by codReserva;
+select * from quartos order by numQuarto;
