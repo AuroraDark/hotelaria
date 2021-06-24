@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <title>Pagamento</title>
-<link rel="icon" href="imagens/favicon.png">
+	<link rel="icon" href="assets/favicon.svg" type="image/svg">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 <link rel="stylesheet" href="styles/style.css">
@@ -21,8 +21,8 @@
 <%@include file="/header.jsp" %>
 <%}%>
 
-	<h1>Insira os dados de pagamento:</h1>
 	<form name="frmPagamento" action="pagamento">
+		<h1>Insira os dados de pagamento:</h1>
 		<input type="hidden" name="code" value="2">
 		<input type="hidden" name="codCli" value="<%out.print(request.getAttribute("codCli"));%>">
 		<input type="hidden" name="dataInicio" value="<%out.print(request.getAttribute("dataInicio"));%>">
@@ -73,7 +73,7 @@
 		<input type="button" value="Efetuar Reserva" class="bttblue"
 			onclick="validarPagamento()">
 	</form>
-	<a href="javascript: cancelar()" class="bttred">Cancelar</a>
+	<div class="centralizar"><a href="javascript: cancelar()" class="bttred">Cancelar</a></div>
 	<script src="scripts/validador.js"></script>
 	<script src="scripts/confirmador.js"></script>
 </body>

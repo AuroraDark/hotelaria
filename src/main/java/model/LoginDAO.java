@@ -6,28 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class LoginDAO {
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://127.0.0.1:3306/dbhotelaria?useTimezone=true&serverTimezone=UTC&useUnicode=yes&characterEncoding=UTF-8";
-	private String user = "root";
-	private String password = "Dba@123";
-
-	private Connection conectar() {
-		Connection con = null;
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, user, password);
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 	
 	public boolean selecionarUsuario(Funcionario func) {
 		String readUsuario = "SELECT * FROM funcionarios WHERE usuario = ?";
 		try {
 			boolean existe = false;
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(readUsuario);
 			pst.setString(1, func.getUsuario());
 			ResultSet rs = pst.executeQuery();

@@ -15,7 +15,7 @@
 	<meta charset="utf-8">
 	<title>Selecionar Cliente</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="imagens/favicon.png">
+	<link rel="icon" href="assets/favicon.svg" type="image/svg">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 	<link rel="stylesheet" href="styles/style.css">
 </head>

@@ -6,17 +6,21 @@ public class Reserva {
 	private String codCli;
 	private String dataInicio;
 	private String dataFim;
+	private boolean checkin;
+	private boolean checkout;
 	
 	public Reserva() {
 		super();
 	}
 
-	public Reserva(int codReserva, String codCli, String dataInicio, String dataFim) {
+	public Reserva(int codReserva, String codCli, String dataInicio, String dataFim, boolean checkin, boolean checkout) {
 		super();
 		this.codReserva = codReserva;
 		this.codCli = codCli;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
+		this.checkin = checkin;
+		this.checkout = checkout;
 	}
 
 	public int getCodReserva() {
@@ -51,6 +55,14 @@ public class Reserva {
 		this.dataFim = dataFim;
 	}
 
+	public boolean isCheckin() { return checkin; }
+
+	public void setCheckin(boolean checkin) { this.checkin = checkin; }
+
+	public boolean isCheckout() { return checkout; }
+
+	public void setCheckout(boolean checkout) { this.checkout = checkout; }
+
 	@Override
 	public String toString() {
 		return "Reserva{" +
@@ -58,6 +70,8 @@ public class Reserva {
 				", codCli='" + codCli + '\'' +
 				", dataInicio='" + dataInicio + '\'' +
 				", dataFim='" + dataFim + '\'' +
+				", checkin=" + checkin +
+				", checkout=" + checkout +
 				'}';
 	}
 }

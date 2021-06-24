@@ -8,28 +8,11 @@ import java.util.ArrayList;
 
 public class FuncionarioDAO {
 
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://127.0.0.1:3306/dbhotelaria?useTimezone=true&serverTimezone=UTC&useUnicode=yes&characterEncoding=UTF-8";
-	private String user = "root";
-	private String password = "Dba@123";
-
-	private Connection conectar() {
-		Connection con = null;
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, user, password);
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
-
 	/*CRUD INSERT*/
 	public void inserirFuncionario(Funcionario func) {
 		String create = "INSERT INTO funcionarios (nome,email,usuario,senha,CPF,dataNascimento,CEP,numEnd,complemento) VALUES (?,?,?,?,?,?,?,?,?)";
 		try {
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(create);
 
 			pst.setString(1, func.getNome());
@@ -55,7 +38,7 @@ public class FuncionarioDAO {
 		ArrayList<Funcionario> listaUsuarios = new ArrayList<>();
 		String read = "SELECT * FROM funcionarios ORDER BY nome";
 		try {
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {//a cada linha
@@ -85,7 +68,7 @@ public class FuncionarioDAO {
 		String readUsuario = "SELECT * FROM funcionarios WHERE codFunc = ?";
 		try {
 			boolean resultado = false;
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(readUsuario);
 			pst.setString(1, func.getCodFunc());
 			ResultSet rs = pst.executeQuery();
@@ -115,7 +98,7 @@ public class FuncionarioDAO {
 		String update = "UPDATE funcionarios SET nome=?,email=?,usuario=?,senha=?,CPF=?,dataNascimento=?,CEP=?,numEnd=?,complemento=? WHERE codFunc=?";
 		
 		try {
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(update);
 			pst.setString(1, func.getNome());
 			pst.setString(2, func.getEmail());
@@ -140,7 +123,7 @@ public class FuncionarioDAO {
 		String delete = "DELETE FROM funcionarios WHERE codFunc=?";
 		
 		try {
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(delete);
 			pst.setString(1, func.getCodFunc());
 			pst.executeUpdate();
@@ -156,7 +139,7 @@ public class FuncionarioDAO {
 		String readUsuario = "SELECT * FROM funcionarios WHERE usuario = ?";
 		try {
 			boolean existe = false;
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(readUsuario);
 			pst.setString(1, usuario);
 			ResultSet rs = pst.executeQuery();

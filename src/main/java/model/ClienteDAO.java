@@ -8,31 +8,13 @@ import java.util.ArrayList;
 
 
 public class ClienteDAO {
-	//Parâmetros de conexão
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://127.0.0.1:3306/dbhotelaria?useTimezone=true&serverTimezone=UTC";
-	private String user = "root";
-	private String password = "Dba@123";
-	
-	//Conexão
-	private Connection conectar() {
-		Connection con = null;
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, user, password);
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 	
 	/** CRUD CREATE **/
 	public void inserirCliente(Cliente cliente) {
 		String createcliente = "insert into clientes(nome,fone,email,CPF,dataNascimento,CEP,numEnd,complemento) values (?,?,?,?,str_to_date(?,'%Y-%m-%d'),?,?,?)";
 		try {
 			// Abrir a conexão com o BD
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			// Preparar a query para execução no BD
 			PreparedStatement pst = con.prepareStatement(createcliente);
 			// Substituir os '?' pelo conteúdo da variável Cliente
@@ -58,7 +40,7 @@ public class ClienteDAO {
 		String createcartao = "insert into cartao(tipo,cNome,cNum,cVal) values(?,?,?,str_to_date(?,'%Y-%m-%d'))";
 		try {
 			// Abrir a conexão com o BD
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			// Preparar a query para execução no BD
 			PreparedStatement pstc = con.prepareStatement(createcartao);
 			// Substituir os '?' pelo conteúdo da variável Cartao
@@ -81,7 +63,7 @@ public class ClienteDAO {
 		ArrayList<Cliente> listaclientes = new ArrayList<>();
 		String readcliente = "select * from clientes order by codCli";
 		try {
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(readcliente);
 			ResultSet rs = pst.executeQuery();
 			// Enquanto houver contatos
@@ -111,7 +93,7 @@ public class ClienteDAO {
 		ArrayList<Cartao> listacartoes = new ArrayList<>();
 		String readcartao = "select * from cartao order by codCli";
 		try {
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pstc = con.prepareStatement(readcartao);
 			ResultSet rsc = pstc.executeQuery();
 			// Enquanto houver contatos
@@ -140,7 +122,7 @@ public class ClienteDAO {
 			String readcliente2 = "select * from clientes where codCli = ?";
 			try {
 				boolean existe = false;
-				Connection con = conectar();
+				Connection con = new ConexaoBD().conectar();
 				PreparedStatement pst = con.prepareStatement(readcliente2);
 				pst.setString(1, cliente.getCodCli());
 				ResultSet rs = pst.executeQuery();
@@ -168,7 +150,7 @@ public class ClienteDAO {
 		public void selecionarCartao(Cartao cartao) {
 			String readcartao2 = "select * from cartao where codCli = ?";
 			try {
-				Connection con = conectar();
+				Connection con = new ConexaoBD().conectar();
 				PreparedStatement pstc = con.prepareStatement(readcartao2);
 				pstc.setString(1, cartao.getCodCli());
 				ResultSet rsc = pstc.executeQuery();
@@ -190,7 +172,7 @@ public class ClienteDAO {
 		public void alterarCliente(Cliente cliente) {
 			String updatecliente = "update clientes set nome=?,fone=?,email=?,CPF=?,dataNascimento=str_to_date(?,'%Y-%m-%d'),CEP=?,numEnd=?,complemento=? where codCli=?";
 			try {
-				Connection con = conectar();
+				Connection con = new ConexaoBD().conectar();
 				PreparedStatement pst = con.prepareStatement(updatecliente);
 				pst.setString(1, cliente.getNome());
 				pst.setString(2, cliente.getFone());
@@ -211,7 +193,7 @@ public class ClienteDAO {
 		public void alterarCartao(Cartao cartao) {
 			String updatecartao = "update cartao set tipo=?,cNome=?,cNum=?,cVal=str_to_date(?,'%Y-%m-%d') where codCli=?";
 			try {
-				Connection con = conectar();
+				Connection con = new ConexaoBD().conectar();
 				PreparedStatement pstc = con.prepareStatement(updatecartao);
 				pstc.setString(1, cartao.getTipo());
 				pstc.setString(2, cartao.getcNome());
@@ -229,7 +211,7 @@ public class ClienteDAO {
 		public void deletarCliente(Cliente cliente) {
 			String deletecliente = "delete from clientes where CodCli=?";
 			try {
-				Connection con = conectar();
+				Connection con = new ConexaoBD().conectar();
 				PreparedStatement pst = con.prepareStatement(deletecliente);
 				pst.setString(1, cliente.getCodCli());
 				pst.executeUpdate();
@@ -242,7 +224,7 @@ public class ClienteDAO {
 		public void deletarCartao(Cartao cartao) {
 			String deletecartao = "delete from cartao where CodCli=?";
 			try {
-				Connection con = conectar();
+				Connection con = new ConexaoBD().conectar();
 				PreparedStatement pstc = con.prepareStatement(deletecartao);
 				pstc.setString(1,cartao.getCodCli());
 				pstc.executeUpdate();

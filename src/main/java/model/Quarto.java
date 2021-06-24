@@ -6,18 +6,20 @@ public class Quarto {
 	private String descricao;
 	private double valorDiaria;
 	private boolean statusDisp;
+	private String urlImage;
 	
 	public Quarto() {
 		super();
 	}
 	
 	
-	public Quarto(int numQuarto, String descricao,double valorDiaria, boolean statusDisp) {
+	public Quarto(int numQuarto, String descricao, double valorDiaria, boolean statusDisp, String urlImage) {
 		super();
 		this.numQuarto = numQuarto;
 		this.descricao = descricao;
 		this.valorDiaria = valorDiaria;
 		this.statusDisp = statusDisp;
+		this.urlImage = urlImage;
 	}
 
 
@@ -46,6 +48,7 @@ public class Quarto {
 	public void setStatusDisp(boolean statusDisp) {
 		this.statusDisp = statusDisp;
 	}
-	
+	public String getUrlImage() { return urlImage; }
+	public void setUrlImage(String urlImage) { this.urlImage = urlImage; }
 	
 }

@@ -22,6 +22,13 @@ header {
     background-color: var(--azul);
 }
 
+header img {
+    position: absolute;
+    top: 14px;
+    horiz-align: center;
+    left: calc(50vw - 50px);
+}
+
 .home {
     margin-left: 10px;
 }
@@ -268,6 +275,14 @@ form .bttblue {
     box-shadow: none;
 }
 
+.consulta {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #0002;
+    padding: 10px;
+
+}
+
 /*=============================== Login ===============================*/
 
 .form_login  {
@@ -346,6 +361,60 @@ form .bttblue {
     margin: 2px;
 }
 
+/* tabela quartos */
+
+#tabela-quartos {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: white;
+}
+
+#tabela-quartos  th, #tabela-quartos  td{
+    padding: 12px 5px;
+    text-align: left;
+    border: none;
+    width: 200px;
+}
+
+#tabela-quartos .imagem-quarto {
+    width: 200px;
+    height: 100px;
+}
+
+#tabela-quartos .id-table {
+    width: 80px;
+    text-align: center;
+}
+
+#tabela-quartos td img {
+    width: 100%;
+    height: auto;
+}
+
+#tabela-quartos  tbody tr:hover {
+    background-color: #edf5ff;
+}
+
+#tabela-quartos  .selecionar-quarto {
+    width: 80px;
+    text-align: center;
+}
+
+#tabela-quartos h3 {
+    color: var(--azul);
+}
+
+#tabela-quartos  thead {
+    background-color: var(--azul);
+    color: white;
+}
+
+#tabela-quartos  .bttred, #tabela .bttblue {
+    padding: 7px 11px;
+    margin: 2px;
+}
+
+
 .centralizar {
     width: 100%;
     display: flex;
@@ -358,6 +427,21 @@ form .bttblue {
     margin-top: 20px;
 }
 
+.centralizar .erro {
+    margin: 20px;
+    color: #a71d1d;
+    background-color: #ffb0b0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.centralizar .sucesso {
+    margin: 20px;
+    color: #328b19;
+    background-color: #c9ffbf;
+    padding: 10px;
+    border-radius: 4px;
 
 
+}
 

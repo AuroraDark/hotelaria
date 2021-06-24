@@ -7,31 +7,13 @@ import java.sql.ResultSet;
 
 
 public class ReservaDAO {
-	//Parâmetros de conexão
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://127.0.0.1:3306/dbhotelaria?useTimezone=true&serverTimezone=UTC";
-	private String user = "root";
-	private String password = "Dba@123";
-	
-	//Conexão
-	private Connection conectar() {
-		Connection con = null;
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, user, password);
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 	
 	/** CRUD CREATE **/
 	public void inserirReserva(Reserva reserva) {
 		String createreserva = "insert into reservas(codCli, dataInicio, dataFim) values (?,str_to_date(?,'%Y-%m-%d'),str_to_date(?,'%Y-%m-%d'))";
 		try {
 			// Abrir a conexão com o BD
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			// Preparar a query para execução no BD
 			PreparedStatement pst = con.prepareStatement(createreserva);
 			// Substituir os '?' pelo conteúdo da variável Cliente
@@ -52,7 +34,7 @@ public class ReservaDAO {
 		String createreservaquarto = "insert into reserva_quartos(numQuarto, dataInicioReserva, dataFimReserva) values (?,str_to_date(?,'%Y-%m-%d'),str_to_date(?,'%Y-%m-%d'))";
 		try {
 			// Abrir a conexão com o BD
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			// Preparar a query para execução no BD
 			PreparedStatement pst = con.prepareStatement(createreservaquarto);
 			// Substituir os '?' pelo conteúdo da variável Cliente
@@ -73,7 +55,7 @@ public class ReservaDAO {
 		String createpagamento = "insert into pagamento(formaPagamento, valorTotal) values (?,?)";
 		try {
 			// Abrir a conexão com o BD
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			// Preparar a query para execução no BD
 			PreparedStatement pst = con.prepareStatement(createpagamento);
 			// Substituir os '?' pelo conteúdo da variável Cliente
@@ -93,7 +75,7 @@ public class ReservaDAO {
 		String readReserva = "SELECT * FROM reservas WHERE codReserva = ?";
 		try {
 			boolean existe = false;
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(readReserva);
 			pst.setInt(1,res.getCodReserva());
 			ResultSet rs = pst.executeQuery();
@@ -102,6 +84,8 @@ public class ReservaDAO {
 				res.setCodCli(rs.getString(2));
 				res.setDataInicio(rs.getString(3));
 				res.setDataFim(rs.getString(4));
+				res.setCheckin(rs.getBoolean(5));
+				res.setCheckout(rs.getBoolean(6));
 				existe = true;
 			}
 			con.close();
@@ -115,7 +99,7 @@ public class ReservaDAO {
 	public void deletarReserva(Reserva res){
 		String delete = "DELETE FROM reservas WHERE codReserva = ?";
 		try {
-			Connection con = conectar();
+			Connection con = new ConexaoBD().conectar();
 			PreparedStatement pst = con.prepareStatement(delete);
 			pst.setInt(1,res.getCodReserva());
 			pst.executeUpdate();
@@ -123,6 +107,33 @@ public class ReservaDAO {
 		} catch (Exception e){
 			System.out.println(e);
 
+		}
+	}
+
+	public void fazerCheckin(Reserva res) {
+		String checkin = "update reservas set checkin=true where codReserva=?";
+		try {
+			Connection con = new ConexaoBD().conectar();
+			PreparedStatement pst = con.prepareStatement(checkin);
+			pst.setInt(1,res.getCodReserva());
+			pst.executeUpdate();
+			con.close();
+		} catch (Exception e){
+			System.out.println(e);
+
+		}
+	}
+
+	public void fazerCheckout(Reserva res) {
+		String checkout = "update reservas set checkout=true where codReserva=?";
+		try {
+			Connection con = new ConexaoBD().conectar();
+			PreparedStatement pst = con.prepareStatement(checkout);
+			pst.setInt(1,res.getCodReserva());
+			pst.executeUpdate();
+			con.close();
+		} catch (Exception e){
+			System.out.println(e);
 		}
 	}
 }

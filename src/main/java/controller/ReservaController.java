@@ -26,7 +26,7 @@ import model.Pagamento;
 /**
  * Servlet implementation class ReservaController
  */
-@WebServlet(urlPatterns = {"/ReservaController","/ConsultarReserva","/DeleteReserva","/pagamento"})
+@WebServlet(urlPatterns = {"/ReservaController","/ConsultarReserva","/DeleteReserva","/pagamento","/ConsultarReservaCheckin", "/ConsultarReservaCheckout", "/checkin", "/checkout"})
 public class ReservaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Cartao cartao = new Cartao();
@@ -65,6 +65,14 @@ public class ReservaController extends HttpServlet {
 			consultarReserva(request,response);
 		}else if (action.equals("/DeleteReserva")) {
 			deletarReserva(request,response);
+		}else if (action.equals("/checkin")) {
+			checkin(request,response);
+		}else if (action.equals("/checkout")) {
+			checkout(request,response);
+		}else if (action.equals("/ConsultarReservaCheckin")) {
+			consultarReservaCheckin(request,response);
+		}else if (action.equals("/ConsultarReservaCheckout")) {
+			consultarReservaCheckout(request,response);
 		} else {
 			response.sendRedirect("Menu.jsp");
 		}
@@ -145,6 +153,8 @@ public class ReservaController extends HttpServlet {
 				request.setAttribute("codCli",reserva.getCodCli());
 				request.setAttribute("dataInicio",reserva.getDataInicio());
 				request.setAttribute("dataFim",reserva.getDataFim());
+				request.setAttribute("checkin",reserva.isCheckin());
+				request.setAttribute("checkout",reserva.isCheckout());
 				System.out.println(reserva.toString());
 				cliente.setCodCli(reserva.getCodCli());
 				if(dao.selecionarCliente(cliente)){
@@ -159,6 +169,62 @@ public class ReservaController extends HttpServlet {
 				response.sendRedirect("ConsultarReserva.jsp?erro=301");
 			}
 	}
+
+	private void consultarReservaCheckin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int cReserva = Integer.parseInt(request.getParameter("cReserva"));
+		reserva.setCodReserva(cReserva);
+		System.out.println(reserva.toString());
+		if(daor.selecionarReserva(reserva)) {
+			request.setAttribute("codReserva",reserva.getCodReserva());
+			request.setAttribute("codCli",reserva.getCodCli());
+			request.setAttribute("dataInicio",reserva.getDataInicio());
+			request.setAttribute("dataFim",reserva.getDataFim());
+			request.setAttribute("checkin",reserva.isCheckin());
+			request.setAttribute("checkout",reserva.isCheckout());
+			System.out.println(reserva.toString());
+			cliente.setCodCli(reserva.getCodCli());
+			if(dao.selecionarCliente(cliente)){
+				request.setAttribute("nome", cliente.getNome());
+				request.setAttribute("cpf",cliente.getCpf());
+				RequestDispatcher rd = request.getRequestDispatcher("Checkin.jsp");
+				rd.forward(request, response);
+			}else{
+				response.sendRedirect("Checkin.jsp?erro=302");
+			}
+		}else{
+			response.sendRedirect("Checkin.jsp?erro=301");
+		}
+	}
+
+	private void consultarReservaCheckout(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int cReserva = Integer.parseInt(request.getParameter("cReserva"));
+		reserva.setCodReserva(cReserva);
+		System.out.println(reserva.toString());
+		if(daor.selecionarReserva(reserva)) {
+			request.setAttribute("codReserva",reserva.getCodReserva());
+			request.setAttribute("codCli",reserva.getCodCli());
+			request.setAttribute("dataInicio",reserva.getDataInicio());
+			request.setAttribute("dataFim",reserva.getDataFim());
+			request.setAttribute("checkin",reserva.isCheckin());
+			request.setAttribute("checkout",reserva.isCheckout());
+			System.out.println(reserva.toString());
+			cliente.setCodCli(reserva.getCodCli());
+			if(dao.selecionarCliente(cliente)){
+				request.setAttribute("nome", cliente.getNome());
+				request.setAttribute("cpf",cliente.getCpf());
+				RequestDispatcher rd = request.getRequestDispatcher("Checkout.jsp?");
+				rd.forward(request, response);
+			}else{
+				response.sendRedirect("Checkout.jsp?erro=302");
+			}
+		}else{
+			response.sendRedirect("Checkout.jsp?erro=301");
+		}
+	}
 	private void deletarReserva(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Recebimento do id(confirmador.js)
@@ -166,5 +232,23 @@ public class ReservaController extends HttpServlet {
 		reserva.setCodReserva(codReserva);
 		daor.deletarReserva(reserva);
 		response.sendRedirect("ConsultarReserva.jsp");
+	}
+
+	private void checkin(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+
+			int codReserva = Integer.parseInt(request.getParameter("codReserva"));
+			reserva.setCodReserva(codReserva);
+			daor.fazerCheckin(reserva);
+			response.sendRedirect("Checkin.jsp?sucesso=1");
+	}
+
+	private void checkout(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int codReserva = Integer.parseInt(request.getParameter("codReserva"));
+		reserva.setCodReserva(codReserva);
+		daor.fazerCheckout(reserva);
+		response.sendRedirect("Checkout.jsp?sucesso=1");
 	}
 }
