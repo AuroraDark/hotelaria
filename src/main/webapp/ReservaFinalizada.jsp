@@ -22,6 +22,7 @@
 <%}%>
 
 <div class="centralizar"><p class="sucesso">Reserva efetuada com sucesso!</p></div>
+<div class="centralizar"><p class="sucesso">O código de sua reserva é: <%out.print(request.getAttribute("codReserva"));%><br>Por favor, anote-o para futuras consultas.</p></div>
 
 <div class="centralizar"><a href="Menu.jsp" class="bttred">Voltar</a></div>
 	

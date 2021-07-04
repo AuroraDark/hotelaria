@@ -9,14 +9,18 @@ import java.sql.ResultSet;
 public class ReservaDAO {
 	
 	/** CRUD CREATE **/
+	/**
+	 * @param reserva
+	 */
 	public void inserirReserva(Reserva reserva) {
 		String createreserva = "insert into reservas(codCli, dataInicio, dataFim) values (?,str_to_date(?,'%Y-%m-%d'),str_to_date(?,'%Y-%m-%d'))";
+		
 		try {
 			// Abrir a conexão com o BD
 			Connection con = new ConexaoBD().conectar();
 			// Preparar a query para execução no BD
 			PreparedStatement pst = con.prepareStatement(createreserva);
-			// Substituir os '?' pelo conteúdo da variável Cliente
+			// Substituir os '?' pelo conteúdo da variável Reserva
 			pst.setString(1, reserva.getCodCli());
 			pst.setString(2, reserva.getDataInicio());
 			pst.setString(3, reserva.getDataFim());
@@ -27,6 +31,27 @@ public class ReservaDAO {
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
+		}
+	}
+	
+	public String obterCodigo() {
+		String readreserva = "SELECT * from reservas ORDER BY codReserva DESC LIMIT 1";
+		String codReserva = null;
+		try {
+			// Abrir a conexão com o BD
+			Connection con = new ConexaoBD().conectar();
+			// Preparar a query para execução no BD
+			PreparedStatement pst = con.prepareStatement(readreserva);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				codReserva = rs.getString(1);
+			}
+			con.close();
+			return codReserva;
+					
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
 		}
 	}
 	

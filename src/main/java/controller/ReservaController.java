@@ -125,6 +125,10 @@ public class ReservaController extends HttpServlet {
 			daor.inserirReservaQuarto(reserva,quarto);
 			daor.inserirPagamento(pagamento);
 			
+			String codigo = daor.obterCodigo();
+			
+			request.setAttribute("codReserva",codigo);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("ReservaFinalizada.jsp");
 			rd.forward(request, response);
 		}
